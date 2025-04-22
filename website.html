@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <style>
+    :root {
+      --gradient: linear-gradient(135deg, #6a11cb, #f60009);
+      --gradient-hover: linear-gradient(135deg, #6a11cb, #f60009);
+      --text-color: #e0e0e0;
+      --bg-color: #0a0a0a;
+      --bg-glow-default: radial-gradient(circle at center, rgba(106, 17, 203, 0.4), transparent 60%);
+      --bg-glow-hover: radial-gradient(circle at center, rgba(255, 179, 71, 0.4), transparent 60%);
+      --border: 1px solid rgba(255, 255, 255, 0.05);
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-blur: blur(6px);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: var(--bg-glow-default);
+      filter: blur(120px);
+      z-index: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 3rem;
+      background: var(--gradient);
+      background-size: 200% auto;
+      background-position: 0% center;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem;
+    }
+
+    h1:hover {
+      background: var(--gradient-hover);
+      background-size: 200% auto;
+      background-position: 100% center;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    h1:hover ~ nav, h1:hover ~ footer, h1:hover ~ *, h1:hover ~ *::before {
+      --glow: var(--bg-glow-hover);
+    }
+
+    h1:hover ~ .container::before,
+    h1:hover ~ body::before {
+      background: var(--bg-glow-hover);
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      position: relative;
+      padding: 15px 40px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: var(--border);
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    nav a::before {
+      content: "";
+      background: linear-gradient(45deg, #ff0046, #740fb8, #ff0046);
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      background-size: 400% 400%;
+      z-index: -1;
+      width: calc(100% + 4px);
+      height: calc(100% + 4px);
+      filter: blur(8px);
+      animation: glowing 10s linear infinite;
+      transition: none;
+      border-radius: 10px;
+      opacity: 0;
+    }
+
+    nav a:hover::before {
+      opacity: 1;
+    }
+
+    nav a:active {
+      color: #000;
+      font-weight: bold;
+    }
+
+    @keyframes glowing {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    footer {
+      position: absolute;
+      bottom: 1rem;
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      z-index: 1;
+    }
+
+    footer a {
+      font-size: 0.8rem;
+      color: var(--text-color);
+      text-decoration: none;
+      opacity: 0.7;
+      padding: 0;
+      border: none;
+      background: none;
+      transition: opacity 0.2s ease, text-shadow 0.3s ease;
+    }
+
+    footer a:hover {
+      opacity: 1;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Hi, I'm Dominik.</h1>
+      <nav>
+        <a href="about.html">about</a>
+        <a href="cv.html">life</a>
+        <a href="projects.html">projects</a>
+        <a href="blog.html">blog</a>
+      </nav>
+    </header>
+  </div>
+  <footer>
+    <a href="https://lichess.org/@/loepare" target="_blank">lichess</a>
+    <a href="https://github.com/d1minik" target="_blank">github</a>
+    <a href="https://www.linkedin.com/in/toepfer-dominik/" target="_blank">linkedin</a>
+  </footer>
+</body>
+</html>
